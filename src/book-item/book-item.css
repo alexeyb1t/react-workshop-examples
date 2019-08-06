@@ -1,0 +1,26 @@
+.book-item {
+    display: flex;
+    width: 60%;
+    margin: 0 auto;
+    box-shadow: 0 4px 10px #aaa;
+    font-family: Arial, sans-serif;
+}
+
+.book-image {
+    height: 200px;
+    width: auto;
+}
+
+.book-item__content {
+    flex-grow: 1;
+    padding: 15px 20px;
+}
+
+.book-item__title {
+    font-size: 26px;
+    margin: 0 0 20px;
+}
+
+.book-item__text {
+    font-size: 14px;
+}
