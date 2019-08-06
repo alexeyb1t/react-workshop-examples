@@ -3,6 +3,10 @@ import {Component} from 'react';
 import './book-item.css';
 
 export class BookItem extends Component {
+  handleClick = (event) => {
+    console.log('Event triggered', event);
+  };
+
   render() {
     return (
       <div className='book-item'>
@@ -13,6 +17,12 @@ export class BookItem extends Component {
           <p className='book-item__text'>
             {this.props.text}
           </p>
+
+          <div className='controls'>
+            <button type='button' onClick={this.handleClick}>
+              Click Me!
+            </button>
+          </div>
         </div>
       </div>
     );
