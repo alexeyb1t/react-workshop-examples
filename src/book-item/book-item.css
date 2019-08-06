@@ -1,7 +1,7 @@
 .book-item {
     display: flex;
     width: 60%;
-    margin: 0 auto;
+    margin: 0 auto 20px;
     box-shadow: 0 4px 10px #aaa;
     font-family: Arial, sans-serif;
 }
