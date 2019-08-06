@@ -3,8 +3,29 @@ import {Component} from 'react';
 import './book-item.css';
 
 export class BookItem extends Component {
-  handleClick = (event) => {
-    console.log('Event triggered', event);
+  bookTypes = {
+    hardcover: 'hardcover',
+    ebook: 'ebook'
+  };
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      bookType: this.bookTypes.hardcover
+    };
+  }
+
+  setHardcoverType = () => {
+    this.setState({
+      bookType: this.bookTypes.hardcover
+    });
+  };
+
+  setEbookType = () => {
+    this.setState({
+      bookType: this.bookTypes.ebook
+    });
   };
 
   render() {
@@ -19,8 +40,18 @@ export class BookItem extends Component {
           </p>
 
           <div className='controls'>
-            <button type='button' onClick={this.handleClick}>
-              Click Me!
+            <button
+              type='button'
+              className={this.state.bookType === this.bookTypes.hardcover ? 'active-button' : ''}
+              onClick={this.setHardcoverType}>
+              Hardcover
+            </button>
+
+            <button
+              type='button'
+              className={this.state.bookType === this.bookTypes.ebook ? 'active-button' : ''}
+              onClick={this.setEbookType}>
+              E-book
             </button>
           </div>
         </div>
