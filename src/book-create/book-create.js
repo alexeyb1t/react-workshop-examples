@@ -1,5 +1,7 @@
 import React from 'react';
 import {Component} from 'react';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import './book-create.css';
 
 export class BookCreate extends Component {
@@ -12,14 +14,6 @@ export class BookCreate extends Component {
     };
   }
 
-  // Example 1: simplified
-  onTitleChange = event => {
-    this.setState({
-      title: event.target.value
-    });
-  };
-
-  // Example 2: more generic
   handleChange = fieldName => {
     return event => {
       this.setState({
@@ -39,23 +33,31 @@ export class BookCreate extends Component {
           <h1 className='create-book__title'>Create Book</h1>
 
           <div className='field-container'>
-            <input
-              className='book-field'
-              type="text"
+            <TextField
+              label="Title"
               value={this.state.title}
-              onChange={this.onTitleChange}/>
+              fullWidth={true}
+              onChange={this.handleChange('title')}
+              margin="normal"
+            />
           </div>
 
           <div className='field-container'>
-            <textarea
-              className='book-field'
-              rows={5}
+            <TextField
+              label="Description"
+              fullWidth={true}
               value={this.state.description}
-              onChange={this.handleChange('description')}/>
+              rows={5}
+              multiline
+              onChange={this.handleChange('description')}
+              margin="normal"
+            />
           </div>
 
           <div className='field-container'>
-            <button className='save-button' type='button' onClick={this.onSave}>Save</button>
+            <Button onClick={this.onSave} color="primary" variant="contained">
+              Save
+            </Button>
           </div>
         </form>
       </div>

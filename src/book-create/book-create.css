@@ -7,6 +7,10 @@
     margin-top: 20px;
 }
 
+.full-width {
+    width: 100%;
+}
+
 .book-field {
     width: 100%;
     border: 1px solid #ccc;
