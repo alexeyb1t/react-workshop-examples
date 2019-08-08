@@ -4,16 +4,22 @@ import {Component} from 'react';
 import './App.css';
 import {BookList} from './book-list/book-list';
 import {AboutPage} from './about-page/about-page';
+import {BookCreate} from './book-create/book-create';
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <Link to='/about'>About</Link>
+        <div className='links'>
+          <Link to='/'>Home</Link>
+          <Link to='/about'>About</Link>
+          <Link to='/book-create'>Create Book</Link>
+        </div>
 
         <div className="app">
           <Route exact path="/" component={BookList}/>
           <Route path="/about" component={AboutPage}/>
+          <Route path="/book-create" component={BookCreate}/>
         </div>
       </Router>
     );
