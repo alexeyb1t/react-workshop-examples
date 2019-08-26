@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import {Component} from 'react';
 import './App.css';
-import {BookList} from './book-list/book-list';
+import {BookListContainer} from './book-list/book-list';
 import {AboutPage} from './about-page/about-page';
 import {BookCreate} from './book-create/book-create';
 
@@ -17,7 +17,7 @@ class App extends Component {
         </div>
 
         <div className="app">
-          <Route exact path="/" component={BookList}/>
+          <Route exact path="/" component={BookListContainer}/>
           <Route path="/about" component={AboutPage}/>
           <Route path="/book-create" component={BookCreate}/>
         </div>

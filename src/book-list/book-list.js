@@ -1,35 +1,23 @@
 import React from 'react';
 import {Component} from 'react';
 import {BookItem} from '../book-item/book-item';
+import {connect} from 'react-redux';
+import {fetchBooks} from "../store/actions/bookActions";
+import {getBooksList, getBooksLoading} from "../store/selectors/bookSelectors";
 
-export class BookList extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      books: []
-    };
-  }
-
-  apiUrl = 'https://gd-react-workshop.herokuapp.com/get-books';
-
+class BookList extends Component {
   componentDidMount() {
-    fetch(this.apiUrl)
-      .then(response => {
-        return response.json();
-      })
-      .then(booksResponse => {
-        this.setState({
-          books: booksResponse.books
-        });
-      })
-      .catch(error => console.error(error));
+    this.props.fetchBooks();
   }
 
   render() {
+    const {booksList, isLoading} = this.props;
+
     return (
       <>
-        {this.state.books.map((book, index) => {
+        {isLoading ? <span>Is Loading</span> : null}
+
+        {booksList.map((book, index) => {
           return (
             <BookItem
               key={index}
@@ -43,3 +31,22 @@ export class BookList extends Component {
     );
   }
 }
+
+function mapStateToProps(state) {
+  return {
+    booksList: getBooksList(state),
+    isLoading: getBooksLoading(state)
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    fetchBooks: function() {
+      return dispatch(fetchBooks())
+    }
+  };
+}
+
+export const BookListContainer = connect(
+  mapStateToProps, mapDispatchToProps
+)(BookList);
