@@ -11,16 +11,21 @@ export class BookList extends Component {
     };
   }
 
-  apiUrl = 'https://gd-react-workshop.herokuapp.com/get-books';
+  apiUrl = 'http://localhost:8000/books';
 
   componentDidMount() {
-    fetch(this.apiUrl)
+    fetch(this.apiUrl, {
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'GET'
+    })
       .then(response => {
         return response.json();
       })
-      .then(booksResponse => {
+      .then(books => {
         this.setState({
-          books: booksResponse.books
+          books: books
         });
       })
       .catch(error => console.error(error));
@@ -29,16 +34,19 @@ export class BookList extends Component {
   render() {
     return (
       <>
-        {this.state.books.map((book, index) => {
-          return (
-            <BookItem
-              key={index}
-              image={book.image}
-              title={book.title}
-              text={book.text}
-            />
-          );
-        })}
+        {this.state.books
+          ? this.state.books.map((book, index) => {
+            return (
+              <BookItem
+                key={index}
+                image={book.image}
+                title={book.title}
+                text={book.text}
+              />
+            );
+          })
+          : null
+        }
       </>
     );
   }
